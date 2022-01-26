@@ -1,6 +1,8 @@
 # plotterbrains
 plotterbrains is the brains of a 3D graphing calculator that can output 3D graphs to Minecraft
 
+![first 6 renders](https://github.com/Frungy/plotterbrains/blob/main/rendersfirst6small.jpg)
+
 This is the version of plotterbrains by the guy who has no idea how to format things to be github things.
 
 How to use this code:

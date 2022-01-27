@@ -13,3 +13,8 @@ Get the .hs on your computer, open it with GHCi, type go_w01 to output the .py f
 
 What next:
 I have no idea how to format a thing for github.  I'm guessing that putting everything into one .hs file and then putting that onto github is not exactly the right way to set one of these things up for github-related actitivites.  I hope someone will tell me how to do that because I think that's the next thing to do, and I hope they don't charge too much money.
+
+What next after that:
+I have more plotting abilities programmed, but I'll copy those in after this project is formatted appropriately.  Here's pictures of more graphs that are in my offline version but not this online one yet.
+
+![second 6 renders](https://github.com/Frungy/plotterbrains/blob/main/renderssecond6small.jpg)

@@ -1,15 +1,38 @@
 # plotterbrains
-plotterbrains is the brains of a 3D graphing calculator that can output 3D graphs to Minecraft.
 
 ![first 6 renders](https://github.com/Frungy/plotterbrains/blob/main/rendersfirst6small.jpg)
 
-How to use this code:
-The main idea with this program is that it's a Haskell program that outputs .py files when you run it, then if you run MCEdit (the Minecraft world editor, works with version 1.5.6.0, I think it doesn't work with version 2), and open a Minecraft world in MCEdit, and then run those .py files as filters, then it will add 3D graphs to that Minecraft world.  It's called plotterbrains because it's like the computey parts of a TI-83 graphing calculator, but it's 3D and in colors instead of the 2D black and white of your TI-83.  Think of Minecraft as being the screen of the TI-83 in this analogy.
+ -------- Plotter Brains? --------
+plotterbrains.hs is the brains of a 3D graphing calculator that can output 3D graphs to Minecraft.
 
-Full instructions:
-Get the .hs on your computer, open it with GHCi, type go_w01 to output the .py files for world 1, type go_w02 to output the .py files for world 2, et cetera, up to 5.  This is set up for 5 worlds at this point.  Also, if you do ghc --make plotterbrains.hs, then it will compile it up into an .exe.  I don't know if that makes it run faster or not.  Right now, main is hard-coded to go_w05, so if you compile it and run the .exe, it will output the .py files for world 5.  For worlds 1 through 4, it should only take a few seconds to run in interpreted mode anyways.  You can make a new Minecraft world in Minecraft or in MCEdit (I think).  What I do is make a new world in Minecraft, give it some name and start it in creative mode.  Then use f3 to bring up the on-screen information and fly to near x = 0, z = 0, and build a pillar there if you want.  Then close Minecraft.  Get MCEdit (prefer version 1.5.6.0), and copy the .py files from plotterbrains output to the "stock-filters" folder in the folder where you have MCEdit.  Then start up MCEdit, use quick load and find your new Minecraft world, then use ctrl+a to select-all (I think maybe it only selects one chunk) and then click on the coffee pot icon, which is filters.  When you pick a filter and run it, it will add blocks to the Minecraft world.  Each of these worlds is on multiple filters.  For example, world 1 is made of 6 filters, so if you did go_w01 in the .hs, it gave you 6 .py files that you copied over to MCEdit's filters folder.  Now run each of those one after the other and it will plot all of world 1.  Then use ctrl-s to save the Minecraft world.  Then close the world in MCEdit (or exit MCEdit), start up Minecraft, and go back into that world.  Now there should be 3D graphs and you should be able to fly around them.
 
-What next:
-I have more plotting abilities programmed.  Here's pictures of more graphs that are in my offline version but not this online one yet.
+ -------- What? --------
+Think of it like a graphing calculator, like a TI-83, but with some differences.  A typical graphing calculator plots in black and white two-dimensional pixels.  This one plots in 3D, in color (with textures), and with enough computing power that you can fly around wasd-style in the graphs.
+
+Or think of it like the 3D graphing functionality of Matlab or Maple or Mathematica, but all voxel-based.
+
+Technically, the way plotterbrains.hs works is that Minecraft is used as the renderer and plotterbrains.hs is the brains of the plotter, hence the name.  By that, I mean that plotterbrains computes 3D math things and figures out where all the cubes have to go and what color they have to be, then doesn't bother rendering that but hands it off to Minecraft at that point, to put it briefly.  Actually, plotterbrains.hs is set up to output things that are taken by MCEdit as inputs, then MCEdit puts the graphs into Minecraft worlds, and then Minecraft renders them wasd-style.
+
+
+ -------- What's Next in Dev for this code? --------
+Hello.  I don't know anything about software things, and I'm entirely uninterested in learning that stuff.  For example, I want to use one of those programs that can put the blocks into the Minecraft world within Minecraft while it's running, or even just have a program that can put blocks into worlds automatically, but I've been stuck with running each plot through MCEdit in GUI mode (and staring at many loading bars), because I don't know anything about software things, and I've failed every time I've tried to learn any of it.  For example, I found many things for both of those methods, and tried learning several of them, and found the instructions incomprehensible every time and wasted many dozens of hours trying to understand things without knowing how to look up what I don't know.  Get the idea??  I don't know anything about software things, okay?  My haskell programming is also bad.
+
+I'm looking for people who are willing to help in ways that don't involve me learning that goddamn arcana (I mean everything aside from Haskell - I'm cool with writing bad Haskell).  I'm willing to work collaboratively, write specifications, make mockups (and I can do those really well, given my actual skllset), et cetera.  Questions include: those things that already exist and would speed up the workflow of producing graph worlds, how the hell do you install and run them?  And so on.  I think there are ways to make all this work better, even given how stupid I am.  There are also additional plotting abilities that could be added to plotterbrains.  I also don't know how to do anything with moving blocks, and there are some mind-croggling plotting abilities that could be added to plotterbrains if anyone could explain how to do any of that to an actual human.
+
+
+ -------- Full Instructions --------
+
+This full instructions section contains two subsections.
+
+ - Introduction to the full instructions -
+Once again, the three programs, in order, are: plotterbrains, then MCEdit, then Minecraft.  Here's the brief rundown of how to get them to talk to each other.  Make a new world in Minecraft creative mode, then exit Minecraft.  Then open MCEdit and load up that world you just created.  Get plotterbrains to give you a plot in the form of a .py file.  Copy that .py file into MCEdit's filters folder.  Select some space where the graph goes in MCEdit and run that filter - that puts the blocks in the world.  Then save, then close MCEdit.  Then open Minecraft and go back into that world and the graph will be in it.  Then you can fly around it.
+
+ - The rest of the full instructions -
+plotterbrains.hs has several goers that all start with "go".  For example, if you load plotterbrains.hs in GHCi and then say "go_w01", then it will output the .py files for graph world 1, which is a set of 6 thin-slice graphs.  I don't know if compiling makes it run faster, but, for example, you can change the line "main" to say "main = go_w08" and then compile and you'll get an .exe that, when run, outputs the .py files for graph world 8 (and that one has a lot of blocks).  plotterbrains has a number of plotting abilities (e.g. plot a 3D scalar field, plot a 2D vector field, etc.) and a number of graph worlds which call on those plotting abilities to make the graphs like in the pictures and videos.
+
+This works with MCEdit 1.5.6.0, but I think it doesn't work with MCEdit version 2 (but I don't remember exactly).  To get the graph into the world, you'll need to have that part of the world generated first.  For example, if the plot is a small graph near (0,100,0) and your new Minecraft world had you spawn at (300,100,300), then the part of that world near that graph won't be generated when the world is generated.  To fix that, you can fly to (0,100,0) within Minecraft and it will generate some world there.  When plotting a big graph, you might have to fly around for a while to make sure there's enough world generated around where the graph goes.  Once the world and the filters are ready, open that world in MCEdit and select some space around where the graph goes.  You can use ctrl+A to select a really big zone, but that will make the filter run slower.  Once you've selected where the graph goes, click on filters, and if you've put the .py in MCEdit's filters folder, then you should see it on the list of filters that you can run.  Run the filters (plotterbrains is set up to break apart big graphs across multiple filters) with that space selected and then the blocks should appear.  The rendering power of MCEdit is limited, so if you have a big graph, you'll have to fly around in MCEdit and maybe only part of the graph will show up at a time, but the blocks are all there.  Save, exit MCEdit, and the Minecraft world is ready.  Load up that world in Minecraft and the graph should be there.  Then you can fly around it.
+
+Because I don't know how to do it the better way, or what the better way is, or how to learn what the better way is.
+
 
 ![second 6 renders](https://github.com/Frungy/plotterbrains/blob/main/renderssecond6small.jpg)
